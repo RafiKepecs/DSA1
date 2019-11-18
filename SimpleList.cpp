@@ -5,12 +5,12 @@ using namespace std;
 class SimpleList {
 private:
   string name = "memememme";
-public:
   class Node {
   public:
     int data;
     Node *next;
   };
+public:
   Node *head, *tail;
   SimpleList() {
     //cout << "SimpleList Constructor called" << endl;
