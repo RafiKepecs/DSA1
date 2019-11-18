@@ -2,16 +2,17 @@
 #include <string>
 using namespace std;
 
+template <typename Object>
 class SimpleList {
 private:
   string name = "memememme";
   class Node {
   public:
-    int data;
+    Object data;
     Node *next;
   };
 protected:
-  void add_end(int n){
+  void add_end(Object n){
     Node *tmp = new Node;
     tmp->data = n;
     tmp->next = nullptr;
@@ -27,13 +28,13 @@ protected:
     }
     //cout << "Node added" << endl;
   }
-  void add_start(int n){
+  void add_start(Object n){
     Node *tmp = new Node;
     tmp -> data = n;
     tmp -> next = head;
     head = tmp;
   }
-  void del_start(){
+  void del_start() {
     Node *tmp = head;
     head = head->next;
     delete tmp;
@@ -71,49 +72,51 @@ public:
         }
   }
   virtual void pop() = 0;
-  virtual void push(int) = 0;
+  virtual void push(Object) = 0;
 };
 
-class Stack : public SimpleList {
+template <typename Object>
+class Stack : public SimpleList<Object> {
 public:
-  Stack() : SimpleList() {
+  Stack() : SimpleList<Object>() {
     cout << "Stack Constructor" << endl;
   }
-  void push(int n){
-    add_start(n);
+  void push(Object n){
+    this->add_start(n);
     //cout << "push" << endl;
   }
   void pop(){
-     del_start();
+     this->del_start();
      //cout << "pop" << endl;
   }
 };
 
-class Queue : public SimpleList {
+template <typename Object>
+class Queue : public SimpleList<Object> {
 public:
-  Queue() : SimpleList() {
+  Queue() : SimpleList<Object>() {
     cout << "Queue Constructor" << endl;
   }
-  void push(int n){
-    add_end(n);
+  void push(Object n){
+    this->add_end(n);
     //cout << "push" << endl;
   }
   void pop(){
-     del_start();
+     this->del_start();
      //cout << "pop" << endl;
   }
 };
 
 int main(){
   //SimpleList a;
-  Stack s;
-  Queue q;
+  Stack<string> s;
+  Queue<int> q;
   cout << "Stack" << endl;
-  s.push(1);
-  s.push(2);
+  s.push("Really is a string!");
+  s.push("2");
   s.pop();
-  s.push(15);
-  s.push(3);
+  s.push("15");
+  s.push("3");
   s.pop();
   s.display(s.gethead());
   cout << "\n" << "Queue" << endl;
