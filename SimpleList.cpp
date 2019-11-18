@@ -10,19 +10,7 @@ private:
     int data;
     Node *next;
   };
-public:
-  Node *head, *tail;
-  SimpleList() {
-    //cout << "SimpleList Constructor called" << endl;
-    head = nullptr;
-    tail = nullptr;
-  }
-  ~SimpleList(){
-    //cout << "SimpleList Destructor called" << endl;
-    //clear();
-    //delete head;
-    //delete tail;
-  }
+protected:
   void add_end(int n){
     Node *tmp = new Node;
     tmp->data = n;
@@ -50,6 +38,19 @@ public:
     head = head->next;
     delete tmp;
     //cout << "delete" << endl;
+  }
+public:
+  Node *head, *tail;
+  SimpleList() {
+    //cout << "SimpleList Constructor called" << endl;
+    head = nullptr;
+    tail = nullptr;
+  }
+  ~SimpleList(){
+    //cout << "SimpleList Destructor called" << endl;
+    //clear();
+    //delete head;
+    //delete tail;
   }
   Node* gethead(){
     return head;
