@@ -135,100 +135,61 @@ void open(ifstream file){
 void input(){
   ifstream file ("test.txt");
   string str;
-  string word_one = "";
-  string word_two = "";
-  string word_three = "";
+  string word = "";
+  string word0= "";
+  string word1 = "";
+  string word2 = "";
   int word_counter = 0;
+  bool two_words = 0;
   while (getline(file,str)){ // for every line
-      for (auto x : str){
-          if (word_counter == 0){
-              if (x == ' '){
-                cout << word_one << endl;
-                word_one = "";
-                word_counter++;
-              }
-              else{
-                word_one = word_one + x;
-              }
-          }
-          else if (word_counter > 0){
-              if (x == ' '){
-                cout << word_two << endl;
-                word_two = "";
-                word_counter++;
-              }
-              else{
-                word_two = word_two + x;
-              }
-          }
-          // else if (word_counter == 2){
-          //
-          //     if (x == '\0'){
-          //       //cout << "test" << endl;
-          //       word_three = word_three + x;
-          //     }
-          //     else{
-          //       //cout << "test" << endl;
-          //       cout << word_three << endl;
-          //       word_three = "";
-          //       word_counter++;
-          //     }
-          // }
+        word = "";
 
-      }
-      cout << word_two << endl;
-      word_counter = 0;
-    //cout << word_one << ". Word count is " << word_counter << endl;
-    //   for (int i = 0; i < str.length(); i++){ // loop through the line
-    //     if (word_counter == 0){
-    //       if (str[i] != ' '){ // if not space
-    //         word_one[i] = str[i]; // store the word into word_one
-    //         // cout << word_one[i];
-    //         // cout << i << endl;
-    //         //cout << word_one[4];
-    //       }
-    //       else {
-    //         if (word_one == "create"){
-    //           cout << "oh" << endl;
-    //         }
-    //         //cout << word_one << i << endl;
-    //         word_counter++;
-    //         //cout << "\n";
-    //         //cout << word_one << endl;;
-    //       }
-    //     }
-    //   }
-    //   cout << "\n";
-    //
-    //     // for (int j = 0; str[i] != ' '; i++){
-    //     //   word_one[i] = str[i];
-    //     //   //cout << str[i];
-    //     //   if ( word_one == "create" ){
-    //     //     cout << "Make a stack!" << endl;
-    //     //   }
-    //     //   if (str[i] == ' '){
-    //     //     break;
-    //     //   }
-    //   //}
-    //
-    // //cout << word_one << "\n";
-  }
+        for (auto x : str){
+            if (x == ' ')
+            {
+              if (word_counter == 0){
+                word0 = word;
+              }
+              if (word_counter == 1){
+                word1 = word;
+              }
+              word = "";
+              word_counter++;
+            }
+            else
+            {
+              if (word == ""){
+                cout << "test" << endl;
+              }
+                word = word + x;
+            }
+            //cout << x;
+        }
+        //cout << "\n";
+         word2 = word;
 
-}
-void input2(){
-  ifstream file ("test.txt");
-  string str;
-  while (getline(file,str)){
-    for(int i = 0; i < str.length() ; i++){
-      if (str[i] != ' ' && str[i] != '\n'){
-          cout << "test" << endl;
-      }
-      else {
-        cout << "bob" << endl;
-      }
-    }
+         // cout << word0 << endl;
+         // // if (word != ""){
+         //    cout << word1 <<  endl;
+         // // }
+         // cout << word2 << endl;
+         word_counter = 0;
   }
 }
+// void input2(){
+//   ifstream file ("test.txt");
+//   string str;
+//   while (getline(file,str)){
+//     for(int i = 0; i < str.length() ; i++){
+//       if (str[i] != ' ' && str[i] != '\n'){
+//           //cout << "test" << endl;
+//       }
+//       else {
+//         //cout << "bob" << endl;
+//       }
+//     }
+//   }
+// }
 int main(){
   //SimpleList a;
   ifstream file("test.txt");
@@ -256,9 +217,9 @@ int main(){
       // q.display(q.gethead());
     }
   }
-  parse();
-  //input();
-  input2();
+  //parse();
+  input();
+  //input2();
 
   return 0;
 }
