@@ -90,6 +90,7 @@ public:
   Stack(): SimpleList<Object>() {}
   Stack(string listName) : SimpleList<Object>(listName) {
     //cout << "Stack Constructor" << endl;
+    //cout << listName << endl;
   }
   void push(Object n){
     this->add_start(n);
@@ -168,49 +169,52 @@ void input(){
     if (word0 == "create"){
       if (word1[0] == 'i'){
         //integers
-        string intListName;
+        string intListName = word1;
         SimpleList<int> *pSLi;
         if (word2 == "stack"){
           pSLi = new Stack<int>(intListName);
           listSLi.push_front(pSLi);
-          cout << word0 << " " << word1 << " " << word2 << endl;
+          //cout << word0 << " " << word1 << " " << word2 << endl;
         }
         if (word2 == "queue"){
           pSLi = new Queue<int>(intListName);
           listSLi.push_front(pSLi);
-          cout << word0 << " " << word1 << " " << word2 << endl;
+          //cout << word0 << " " << word1 << " " << word2 << endl;
         }
       }
       else if(word1[0] == 'd'){
         //doubles
-        string doubleListName;
+        string doubleListName = word1;
         SimpleList<double> *pSLd;
         if (word2 == "stack"){
           pSLd = new Stack<double>(doubleListName);
           listSLd.push_front(pSLd);
-          cout << word0 << " " << word1 << " " << word2 << endl;
+          //cout << word0 << " " << word1 << " " << word2 << endl;
         }
         if (word2 == "queue"){
           pSLd = new Queue<double>(doubleListName);
           listSLd.push_front(pSLd);
-          cout << word0 << " " << word1 << " " << word2 << endl;
+          //cout << word0 << " " << word1 << " " << word2 << endl;
         }
       }
       else if(word1[0] == 's'){
         //strings
-        string stringListName;
+        string stringListName = word1;
         SimpleList<string> *pSLs;
         if (word2 == "stack"){
           pSLs = new Stack<string>(stringListName);
           listSLs.push_front(pSLs);
-          cout << word0 << " " << word1 << " " << word2 << endl;
+          //cout << word0 << " " << word1 << " " << word2 << endl;
         }
         if (word2 == "queue"){
           pSLs = new Queue<string>(stringListName);
           listSLs.push_front(pSLs);
-          cout << word0 << " " << word1 << " " << word2 << endl;
+          //cout << word0 << " " << word1 << " " << word2 << endl;
         }
       }
+    }
+    if (word0 == "push"){
+      //cout << "pushing" << endl;
     }
   }
 }
