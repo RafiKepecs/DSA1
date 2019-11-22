@@ -104,8 +104,9 @@ public:
 template <typename Object>
 class Queue : public SimpleList<Object> {
 public:
-  Queue() : SimpleList<Object>() {
-    cout << "Queue Constructor" << endl;
+  Queue() : SimpleList<Object>() {}
+  Queue(string listName) : SimpleList<Object>(listName) {
+    //cout << "Stack Constructor" << endl;
   }
   void push(Object n){
     this->add_end(n);
@@ -117,66 +118,10 @@ public:
   }
 };
 
-void parse(){
+void input(){
   list<SimpleList<int> *> listSLi; // all integer stacks and queues
   list<SimpleList<double> *> listSLd; // all double stacks and queues
   list<SimpleList<string> *> listSLs; // all string stacks and queues
-
-  string listName;
-  SimpleList<int> *pSLi;
-  pSLi = new Stack<int>(listName);
-  listSLi.push_front(pSLi);//list of pointers to integer stacks and queues. built in c++ function
-}
-
-void open(ifstream file){
-
-}
-
-// void input(){
-//   ifstream file ("test.txt");
-//   string str;
-//   string word = "";
-//   string word0= "";
-//   string word1 = "";
-//   string word2 = "";
-//   int word_counter = 0;
-//   bool two_words = 0;
-//   while (getline(file,str)){ // for every line
-//         word = "";
-//
-//         for (auto x : str){
-//             if (x == ' ')
-//             {
-//               if (word_counter == 0){
-//                 word0 = word;
-//               }
-//               if (word_counter == 1){
-//                 word1 = word;
-//               }
-//               word = "";
-//               word_counter++;
-//             }
-//             else
-//             {
-//               if (word == ""){
-//                 cout << "test" << endl;
-//               }
-//                 word = word + x;
-//             }
-//             //cout << x;
-//         }
-//         //cout << "\n";
-//          word2 = word;
-//
-//          // cout << word0 << endl;
-//          // // if (word != ""){
-//          //    cout << word1 <<  endl;
-//          // // }
-//          // cout << word2 << endl;
-//          word_counter = 0;
-//   }
-// }
-void input3(){
   ifstream file ("test.txt");
   string str;
   string word0= "";
@@ -216,9 +161,58 @@ void input3(){
             }
         }
         word_counter = 0;
-        cout << word0 << " " << word1 << " " << word2 << endl;
+        //cout << word0 << " " << word1 << " " << word2 << endl;
+
+
+
+    if (word0 == "create"){
+      if (word1[0] == 'i'){
+        //integers
+        string intListName;
+        SimpleList<int> *pSLi;
+        if (word2 == "stack"){
+          pSLi = new Stack<int>(intListName);
+          listSLi.push_front(pSLi);
+          cout << word0 << " " << word1 << " " << word2 << endl;
+        }
+        if (word2 == "queue"){
+          pSLi = new Queue<int>(intListName);
+          listSLi.push_front(pSLi);
+          cout << word0 << " " << word1 << " " << word2 << endl;
+        }
+      }
+      else if(word1[0] == 'd'){
+        //doubles
+        string doubleListName;
+        SimpleList<double> *pSLd;
+        if (word2 == "stack"){
+          pSLd = new Stack<double>(doubleListName);
+          listSLd.push_front(pSLd);
+          cout << word0 << " " << word1 << " " << word2 << endl;
+        }
+        if (word2 == "queue"){
+          pSLd = new Queue<double>(doubleListName);
+          listSLd.push_front(pSLd);
+          cout << word0 << " " << word1 << " " << word2 << endl;
+        }
+      }
+      else if(word1[0] == 's'){
+        //strings
+        string stringListName;
+        SimpleList<string> *pSLs;
+        if (word2 == "stack"){
+          pSLs = new Stack<string>(stringListName);
+          listSLs.push_front(pSLs);
+          cout << word0 << " " << word1 << " " << word2 << endl;
+        }
+        if (word2 == "queue"){
+          pSLs = new Queue<string>(stringListName);
+          listSLs.push_front(pSLs);
+          cout << word0 << " " << word1 << " " << word2 << endl;
+        }
+      }
+    }
   }
-  
 }
 // void input2(){
 //   ifstream file ("test.txt");
@@ -236,10 +230,6 @@ void input3(){
 // }
 int main(){
   //SimpleList a;
-  // ifstream file("test.txt");
-  // string str;
-  // while (getline(file,str)){
-  //   //cout << str << endl;
   //   if (str.compare("Stack<string> s;")){
   //     // Stack<string> s("BOB");
   //     // Queue<int> q;
@@ -260,10 +250,7 @@ int main(){
   //     // q.pop();
   //     // q.display(q.gethead());
   //   }
-  // }
-  //parse();
-  input3();
-  //input2();
+  input();
 
   return 0;
 }
