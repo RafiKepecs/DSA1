@@ -116,7 +116,7 @@ struct myDataPointer {
   char letter2;
   const char* restlastName;
   const char* firstName;
-  string ssn;
+  const char* ssn;
   Data* data;
 };
 
@@ -125,6 +125,7 @@ myDataPointer arr[maxSize];
 list<Data *>::iterator it;
 int i = 0;
 int len;
+Data* deref;
 
 bool compare(myDataPointer A, myDataPointer B) {
   if(A.letter1 != B.letter1) {return A.letter1 < B.letter1;}
@@ -133,19 +134,21 @@ bool compare(myDataPointer A, myDataPointer B) {
   if(res) {return res<0;}
   int res2 = strcmp(A.firstName,B.firstName);
   if(res2) {return res2<0;}
-  return A.ssn < B.ssn;
+  int res3 = strcmp(A.ssn, B.ssn);
+  if(res3) {return res3<0;}
 }
 
 void sortDataList(list<Data *> &l) {
   // Fill this in
   //load elements of the list into the array
+
   for (it = l.begin(); it != l.end(); it++){
-    Data* deref = *it;
+    deref = *it;
     arr[i].letter1 = (deref->lastName)[0];
     arr[i].letter2 = (deref->lastName)[1];
     arr[i].restlastName = ((deref->lastName).data() + 2);
-    arr[i].firstName = (deref)->firstName;
-    arr[i].ssn = (deref)->ssn;
+    arr[i].firstName = ((deref)->firstName).data();
+    arr[i].ssn = (deref)->ssn.data();
     arr[i].data = deref;
     i++;
   }
